@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import PasswordReset from "./pages/PasswordReset";
+import Signup from "./pages/Signup";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/home" element={<Home />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
         </Routes>
       </Router>
     </StyledContainer>

@@ -13,11 +13,20 @@ import {
 } from "./../components/Styles";
 import Logo from "./../assets/logo.png";
 import { formik, Form, Formik } from "formik";
+import { useHistory, useState } from "react";
 import { TextInput } from "../components/FormLib";
 import * as Yup from "yup";
 import { FiMail, FiLock,FiUser,FiCalendar } from "react-icons/fi";
 // import Loader from "react-loader-spinner";
 const Signup = () => {
+  // const history = useHistory()
+
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+  const [DOB, setDOB] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
+
   return (
     <div>
       <StyledFormArea>

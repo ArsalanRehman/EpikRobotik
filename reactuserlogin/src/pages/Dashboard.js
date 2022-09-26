@@ -1,3 +1,4 @@
+import { useEffect, useHistory } from "react";
 import {
   StyledSubTitle,
   
@@ -6,9 +7,25 @@ import {
   StyledFormArea,
   colors,
 } from "../components/Styles";
-import Login from './Login'
+// import jwt from 'jsonwebtoken'
+import Logout from "./Logout";
+import { useNavigate } from 'react-router-dom'
+
+
 
 const Dashboard = (props) => {
+  const navigate = useNavigate()
+
+  // const history = useHistory();
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+    if(!token){
+      console.log('TOKEN DATA STATUS', token);
+        localStorage.removeItem('token')
+        navigate('/login');    
+      }
+  },[]);
+
   return (
     <div>
       <div
@@ -28,7 +45,7 @@ const Dashboard = (props) => {
       <StyledFormArea bg={colors.theme}>
         <StyledSubTitle size={27}>Welcome {props.username}</StyledSubTitle>
         <ButtonGroup>
-          <StyledButton to="/login">LOGOUT</StyledButton>
+          <StyledButton onClick={Logout} to="/login" >LOGOUT</StyledButton>
           <StyledButton  to="/passwordreset">PASSWORD RESET</StyledButton>
         </ButtonGroup>
       </StyledFormArea>

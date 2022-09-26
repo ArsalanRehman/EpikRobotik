@@ -5,6 +5,7 @@ import {
   StyledTitle,
   colors,
   ButtonGroup,
+  StyledButton,
   ExtraText,
   TextLink,
   CopyrightText,
@@ -15,6 +16,7 @@ import { useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import { TextInput } from '../components/FormLib'
 import * as Yup from 'yup'
+import Signup from './Signup'
 import { FiMail, FiLock } from 'react-icons/fi'
 // import axios from './../Api/axios'
 // const LOGIN_URL = '/login'
@@ -113,6 +115,7 @@ const Login = (props) => {
               <StyledFormButton onClick={handleSubmit} type="submit">
                 LOGIN
               </StyledFormButton>
+              <StyledButton  to="/signup">SIGNUP</StyledButton>
             </ButtonGroup>
           </form>
         </Formik>

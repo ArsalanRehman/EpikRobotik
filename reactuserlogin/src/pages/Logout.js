@@ -1,5 +1,8 @@
+import {React, useNavigate} from "react";
 const Logout = ()=>{
-    return <div> Bye Bye</div>
+    const navigate = useNavigate()
+    localStorage.removeItem('token');
+    navigate('/login')
 }
 
 export default Logout;

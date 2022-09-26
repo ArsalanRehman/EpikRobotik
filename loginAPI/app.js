@@ -9,7 +9,7 @@ const AppError = require('./utils/appError');
 const app = express();
 app.use(express.json());
 const cors = require('cors');
-
+const rosRouter = require('./routers/rosRouter');
 //////////////////
 
 app.get(helmet());
@@ -34,18 +34,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use('/api', limiter);
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/ros', rosRouter);
+
 
 
 
 
 app.all('*',(req, res, next) => {
-    // res.status(404).json({
-    //     status: 'basarisiz',
-    //      message: `${req.originalUrl} bulunmamaktadir`
-    //  });
-    // const err = new Error(`${req.originalUrl} bulunmamaktadir`);
-    // err.status = 'basarisiz';
-    // err.statusCode = 404;
+
     next(new AppError(`${req.originalUrl} bulunmamaktadir`, 404));
 });
 

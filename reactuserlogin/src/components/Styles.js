@@ -68,6 +68,7 @@ export const StyledButton = styled(Link)`
     background-color: ${colors.primary};
     color: ${colors.theme};
     cursor: pointer;
+    
   }
 `;
 export const ButtonGroup = styled.div`
