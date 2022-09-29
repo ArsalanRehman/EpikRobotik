@@ -25,7 +25,7 @@ const Login = () => {
       const data = await response.json();
       console.log(data)
       if (data.status === 'success') {
-        localStorage.setItem('token', data.user)
+        localStorage.setItem('token', JSON.stringify(data.user))
 
         // alert('Login successful')
         navigate('/dashboard',)
@@ -57,7 +57,7 @@ const Login = () => {
       placeholder="Password"
     />
     <br />
-    <input type="submit" value="Register" />
+    <input type="submit" value="Login" />
   </form>
    
   )

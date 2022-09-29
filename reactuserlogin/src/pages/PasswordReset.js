@@ -7,12 +7,17 @@ const PasswordReset = () => {
   const [passwordCurrent, setPasswordCurrent] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+
   async function updatePassword(event) {
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log('token' + token);
+    
     event.preventDefault()
     const response = await fetch('http://127.0.0.1:5050/api/v1/users/updateMyPassword', {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
       },
       body: JSON.stringify({
         passwordCurrent,
@@ -24,9 +29,9 @@ const PasswordReset = () => {
     const data = await response.json()
     console.log(data);
 
-    if (data.status === 'success') {
-      navigate('/dashboard')
-    }
+    // if (data.status === 'success') {
+    //   navigate('/dashboard')
+    // }
   }
 
   return (
