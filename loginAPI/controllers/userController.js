@@ -1,13 +1,12 @@
-const userModel = require('./../models/userModels');
-
+const User = require('./../models/userModels');
 
 //get already existed user
 exports.getUsers = async (req, res) => {
   try {
-    const newUser = await userModel.User.find()
+    const newUser = await User.find()
 
     res.status(201).json({
-      status: success,
+      status: 'success',
       data: {
         User: newUser,
       },
@@ -20,9 +19,9 @@ exports.getUsers = async (req, res) => {
 //create user
 exports.postUser = async (req, res) => {
   try {
-    const newUser = await userModel.User.create(req.body)
+    const newUser = await User.create(req.body)
     res.status(201).json({
-      status: success,
+      status: 'success',
       data: {
         User: newUser,
       },
@@ -35,7 +34,7 @@ exports.postUser = async (req, res) => {
 //find user by id
 exports.getUser = async (req, res) => {
   try {
-    const newUser = await userModel.findById(req.params.id)
+    const newUser = await User.findById(req.params.id)
     res.status(201).json({
       status: 'success',
       data: {
@@ -49,7 +48,7 @@ exports.getUser = async (req, res) => {
 //update user
 exports.updateUser = async (req, res) => {
   try {
-    const newUser = await userModel.User.findByIdAndUpdate(req.params.id,req.body,
+    const newUser = await User.findByIdAndUpdate(req.params.id,req.body,
       {
         new: true,
         runValidators: true,

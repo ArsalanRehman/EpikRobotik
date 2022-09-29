@@ -1,7 +1,7 @@
 import { useEffect, useHistory } from "react";
 import {
   StyledSubTitle,
-  
+
   StyledButton,
   ButtonGroup,
   StyledFormArea,
@@ -17,14 +17,14 @@ const Dashboard = (props) => {
   const navigate = useNavigate()
 
   // const history = useHistory();
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem('token');
-    if(!token){
+    if (!token) {
       console.log('TOKEN DATA STATUS', token);
-        localStorage.removeItem('token')
-        navigate('/login');    
-      }
-  },[]);
+      localStorage.removeItem('token')
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <div>
@@ -40,13 +40,13 @@ const Dashboard = (props) => {
           justifyContent: "flex-start",
         }}
       >
-       
+
       </div>
       <StyledFormArea bg={colors.theme}>
         <StyledSubTitle size={27}>Welcome {props.username}</StyledSubTitle>
         <ButtonGroup>
           <StyledButton onClick={Logout} to="/login" >LOGOUT</StyledButton>
-          <StyledButton  to="/passwordreset">PASSWORD RESET</StyledButton>
+          <StyledButton to="/passwordreset">PASSWORD RESET</StyledButton>
         </ButtonGroup>
       </StyledFormArea>
     </div>

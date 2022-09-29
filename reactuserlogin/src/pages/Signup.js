@@ -1,116 +1,71 @@
-import {
-  StyledTextInput,
-  StyledFormArea,
-  StyledFormButton,
-  StyledLabel,
-  Avatar,
-  StyledTitle,
-  colors,
-  ButtonGroup,
-  ExtraText,
-  TextLink,
-  CopyrightText,
-} from "./../components/Styles";
-import Logo from "./../assets/logo.png";
-import { formik, Form, Formik } from "formik";
-import { useHistory, useState } from "react";
-import { TextInput } from "../components/FormLib";
-import * as Yup from "yup";
-import { FiMail, FiLock,FiUser,FiCalendar } from "react-icons/fi";
-// import Loader from "react-loader-spinner";
+
+import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+
 const Signup = () => {
-  // const history = useHistory()
+  const navigate = useNavigate();
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-  const [DOB, setDOB] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
+	const [passwordConfirm, setPasswordConfirm] = useState('')
+
+  async function registerUser(event) {
+		event.preventDefault()
+
+		const response = await fetch('http://127.0.0.1:5050/api/v1/users/signup', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name,
+        password,
+				email,
+        passwordConfirm,
+			}),
+		})
+
+		const data = await response.json()
+    console.log(data);
+
+		if (data.status === 'success') {
+			navigate('/login')
+		}
+	}
 
   return (
-    <div>
-      <StyledFormArea>
-        <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>
-          Member Signup
-        </StyledTitle>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            repeatPassword: "",
-            dateOfBirth: "",
-            name: "",
-          }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email("Invalid email address")
-              .required("Required"),
-            password: Yup.string()
-              .min(8, "Password is too short")
-              .max(30, "password is too long")
-              .required("Required"),
-            name: Yup.string().required("Required"),
-            dateOfBirth: Yup.date().required("Required"),
-            repeatPassword: Yup.string()
-              .required("Required")
-              .oneOf([Yup.ref("password")], "Passwords must match"),
-          })}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-          }}
-        >
-          {({ isSubmitting }) => (
-            <form>
-              <TextInput
-                name="name"
-                type="text"
-                label="Full Name"
-                placeholder="Epik Robotik"
-                icon={<FiUser />}
-              />
-              <TextInput
-                name="email"
-                type="text"
-                label="Email Address"
-                placeholder="example@gmail.com"
-                icon={<FiMail />}
-              />
-              <TextInput
-                name="dateOfBirth"
-                type="date"
-                label="Date Of Birth"
-                
-                icon={<FiCalendar />}
-              />
-              <TextInput
-                name="password"
-                type="password"
-                label="Password"
-                placeholder="*******"
-                icon={<FiLock />}
-              />
-               <TextInput
-                name="repeatpassword"
-                type="password"
-                label="Repeat Password"
-                placeholder="*******"
-                icon={<FiLock />}
-              />
-              <ButtonGroup>
-            
-                  <StyledFormButton type="submit">SIGNUP</StyledFormButton>
-                
-              </ButtonGroup>
-            </form>
-          )}
-        </Formik>
-        <ExtraText>
-          Already have an account? <TextLink to="/login">Login</TextLink>
-        </ExtraText>
-      </StyledFormArea>
-      <CopyrightText>Epik Robotik &copy;2020</CopyrightText>
-    </div>
+    <form onSubmit={registerUser}>
+    <input
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      type="text"
+      placeholder="Name"
+    />
+    <br />
+    <input
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      type="email"
+      placeholder="Email"
+    />
+    <br />
+    <input
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      type="password"
+      placeholder="Password"
+    />
+    <br />
+    <input
+      value={passwordConfirm}
+      onChange={(e) => setPasswordConfirm(e.target.value)}
+      type="password"
+      placeholder="Password"
+    />
+    <br />
+    <input type="submit" value="Register" />
+  </form>
   );
 };
 export default Signup;

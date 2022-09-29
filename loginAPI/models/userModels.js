@@ -14,11 +14,11 @@ const userSchema = mongoose.Schema({
     minlength: 8,
     select: false
   },
-  dateOfBirth:{
-    type: String,
-    required: [true,'Dogum tarihinizi giriniz']
+  // dateOfBirth:{
+  //   type: String,
+  //   // required: [true,'Dogum tarihinizi giriniz']
 
-  },
+  // },
   role: {
     type: String,
     enum: ['user', 'admin' ],

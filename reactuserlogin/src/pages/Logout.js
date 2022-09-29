@@ -1,4 +1,4 @@
-import {React, useNavigate} from "react";
+import { useNavigate} from "react";
 const Logout = ()=>{
     const navigate = useNavigate()
     localStorage.removeItem('token');

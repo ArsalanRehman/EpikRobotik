@@ -1,31 +1,11 @@
-import {
-  StyledFormArea,
-  StyledFormButton,
-  Avatar,
-  StyledTitle,
-  colors,
-  ButtonGroup,
-  StyledButton,
-  ExtraText,
-  TextLink,
-  CopyrightText,
-} from './../components/Styles'
-import Logo from './../assets/user.png'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Formik } from 'formik'
-import { TextInput } from '../components/FormLib'
-import * as Yup from 'yup'
-import Signup from './Signup'
-import { FiMail, FiLock } from 'react-icons/fi'
-// import axios from './../Api/axios'
-// const LOGIN_URL = '/login'
 
-const Login = (props) => {
+
+const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  // const [user, setUSer] = useState({ email: '', password: '' })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -41,14 +21,7 @@ const Login = (props) => {
           password,
         }),
       })
-      // const response = await axios.post(LOGIN_URL,
-      //     JSON.stringify({ email, password }),
-      //     {
-      //         headers: { 'Content-Type': 'application/json' },
-      //         withCredentials: true
-      //     }
-      // );
-      // console.log(JSON.stringify(response?.data))
+
       const data = await response.json();
       console.log(data)
       if (data.status === 'success') {
@@ -60,7 +33,6 @@ const Login = (props) => {
         alert('Please check your Email and Password')
       }
 
-      // setSuccess(true);
     } catch (err) {
       console.log(err)
     }
@@ -69,63 +41,25 @@ const Login = (props) => {
 
 
   return (
-    <div>
-      <StyledFormArea>
-        <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>
-          LOGIN PAGE
-        </StyledTitle>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email('Invalid email address')
-              .required('Required'),
-            password: Yup.string().required('Required'),
-          })}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values)
-          }}
-        >
-          <form>
-            <TextInput
-              name="email"
-              type="text"
-              label="Email Address"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
-              icon={<FiMail />}
-            />
-            <TextInput
-              name="password"
-              type="password"
-              label="Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
-              icon={<FiLock />}
-            />
-            <ButtonGroup>
-              <StyledFormButton onClick={handleSubmit} type="submit">
-                LOGIN
-              </StyledFormButton>
-              <StyledButton  to="/signup">SIGNUP</StyledButton>
-            </ButtonGroup>
-          </form>
-        </Formik>
-        <ExtraText>
-          Forgotten Password?{' '}
-          <TextLink to="/forgottenpassword">Reset it</TextLink>
-        </ExtraText>
-      </StyledFormArea>
-      <CopyrightText>Epik Robotik &copy;2020</CopyrightText>
-    </div>
+    <form onSubmit={handleSubmit}>
+    <br />
+    <input
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      type="email"
+      placeholder="Email"
+    />
+    <br />
+    <input
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      type="password"
+      placeholder="Password"
+    />
+    <br />
+    <input type="submit" value="Register" />
+  </form>
+   
   )
 }
 export default Login 
