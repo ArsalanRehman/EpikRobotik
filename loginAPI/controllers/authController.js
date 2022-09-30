@@ -92,13 +92,22 @@ exports.protect = catchAsync(async(req, res, next) => {
 exports.forgetPassword = (req,res,next)=>{
 
 }
-exports.resetPassword = (req,res,next )=>{
+exports.resetPassword = (req,res,next)=>{
 
 }
+exports.logout = (req, res) => {
+    console.log(req);
+    console.log("logout Fonksiyonu");
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+    res.status(200).json({ status: 'success' });
+  };
 
 exports.updatePassword =catchAsync( async(req, res, next)=> {
-    console.log(req.body);
-    console.log('Password reset req');
+    // console.log(req.body);
+    // console.log('Password reset req');
     //get user from the collection
     const user = await User.findById(req.user.id).select('+password');
     // check if the current password is correct
