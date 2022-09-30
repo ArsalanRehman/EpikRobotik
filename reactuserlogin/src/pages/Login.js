@@ -1,65 +1,92 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate()
+import './../css/login.css';
+import { Container, Col, Row } from "react-bootstrap";
+const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  // const [user, setUSer] = useState({ email: '', password: '' })
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const response = await fetch('http://127.0.0.1:5050/api/v1/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      })
-
+      const response = await fetch(
+        "http://192.168.109.142:5050/api/v1/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+      // const response = await axios.post(LOGIN_URL,
+      //     JSON.stringify({ email, password }),
+      //     {
+      //         headers: { 'Content-Type': 'application/json' },
+      //         withCredentials: true
+      //     }
+      // );
+      // console.log(JSON.stringify(response?.data))
       const data = await response.json();
-      console.log(data)
-      if (data.status === 'success') {
-        localStorage.setItem('token', JSON.stringify(data.user))
+      console.log(data);
+      if (data.status === "success") {
+        localStorage.setItem("token", data.user);
 
         // alert('Login successful')
-        navigate('/dashboard',)
+        navigate("/dashboard");
       } else {
-        alert('Please check your Email and Password')
+        alert("Please check your Email and Password");
       }
 
+      // setSuccess(true);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-
-
-
+  };
   return (
-    <form onSubmit={handleSubmit}>
-    <br />
-    <input
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      type="email"
-      placeholder="Email"
-    />
-    <br />
-    <input
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      type="password"
-      placeholder="Password"
-    />
-    <br />
-    <input type="submit" value="Login" />
-  </form>
-   
-  )
-}
-export default Login 
+    <center>
+      <form onSubmit={handleSubmit} className="form">
+        <h1 id="login">LOGIN</h1>
+        <br />
+        <input
+          className="label"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="Email"
+        />
+        <br />
+        <input
+          className="label"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password"
+        />
+        <br />
+        <input
+          className="button button:hosubmitver"
+          type="submit"
+          value="Login"
+        />
+        <p id="forgotPassText">
+          Forgot Password ?{" "}
+          <a href="http://localhost:3000/" id="resetPassword">
+            Reset It
+          </a>
+        </p>
+      </form>
+      <h4 id="copy_right">Epik Robotik &copy;2022</h4>
+    </center>
+
+  );
+};
+export default Login;

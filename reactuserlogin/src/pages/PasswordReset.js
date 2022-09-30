@@ -1,66 +1,48 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import "./../css/PasswordReset.css";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
-
-  const [passwordCurrent, setPasswordCurrent] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
-
+  const [email, setEmail] = useState("");
   async function updatePassword(event) {
-    const token = JSON.parse(localStorage.getItem('token'));
-    console.log('token' + token);
-    
-    event.preventDefault()
-    const response = await fetch('http://127.0.0.1:5050/api/v1/users/updateMyPassword', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({
-        passwordCurrent,
-        password,
-        passwordConfirm,
-      }),
-    })
+    event.preventDefault();
+    const response = await fetch(
+      "http://127.0.0.1:5050/api/v1/users/updateMyPassword",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      }
+    );
 
-    const data = await response.json()
+    const data = await response.json();
     console.log(data);
 
-    // if (data.status === 'success') {
-    //   navigate('/dashboard')
-    // }
+    if (data.status === "success") {
+      navigate("/dashboard");
+    }
   }
 
   return (
-    <form onSubmit={updatePassword}>
-
-    <br />
-    <input
-      value={passwordCurrent}
-      onChange={(e) => setPasswordCurrent(e.target.value)}
-      type="password"
-      placeholder="Current Password"
-    />
-    <br />
-    <input
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      type="password"
-      placeholder="Password"
-    />
-    <br />
-    <input
-      value={passwordConfirm}
-      onChange={(e) => setPasswordConfirm(e.target.value)}
-      type="password"
-      placeholder="Password"
-    />
-    <br />
-    <input type="submit" value="Change Password" />
-  </form>
+    <center>
+      <form onSubmit={updatePassword} className="formpassword">
+        <h1 id="login">Change Password</h1>
+        <input
+          className="label"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="Email"
+        />
+        <br />
+        <input type="submit" value="Send" className="button" />
+      </form>
+    </center>
   );
 };
 export default PasswordReset;

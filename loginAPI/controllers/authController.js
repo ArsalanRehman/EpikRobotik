@@ -88,6 +88,14 @@ exports.protect = catchAsync(async(req, res, next) => {
     req.user = freshUser;
     next();
 });
+
+exports.forgetPassword = (req,res,next)=>{
+
+}
+exports.resetPassword = (req,res,next )=>{
+
+}
+
 exports.updatePassword =catchAsync( async(req, res, next)=> {
     console.log(req.body);
     console.log('Password reset req');

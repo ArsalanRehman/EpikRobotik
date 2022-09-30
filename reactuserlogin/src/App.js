@@ -2,7 +2,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
-import { StyledContainer } from "./components/Styles";
 import cors from "cors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import {
@@ -18,7 +17,7 @@ import Signup from "./pages/Signup";
 
 function App() {
   return (
-    <StyledContainer>
+    
       <Router>
         <Routes>
           <Route path="/login" element={<Login />}></Route>
@@ -31,7 +30,7 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
         </Routes>
       </Router>
-    </StyledContainer>
+    
   );
 }
 
