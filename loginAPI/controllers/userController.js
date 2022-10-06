@@ -48,7 +48,7 @@ exports.getUser = async (req, res) => {
 //update user
 exports.updateUser = async (req, res) => {
   try {
-    const newUser = await User.findByIdAndUpdate(req.params.id,req.body,
+    const newUser = await User.findByIdAndUpdate(req.params.id, req.body,
       {
         new: true,
         runValidators: true,
@@ -64,6 +64,18 @@ exports.updateUser = async (req, res) => {
     console.log(err)
   }
 }
-exports.deleteUser = async (req,res) =>{
-  res.send('delete User here');
+exports.deleteUser = async (req, res) => {
+
+  try {
+    dpt = null;
+    dpt = await User.findOneAndDelete({ email: req.body.email });
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
+  }
+  catch (err) {
+    console.log(err);
+  }
+
 }

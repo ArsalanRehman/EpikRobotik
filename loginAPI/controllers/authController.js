@@ -96,12 +96,12 @@ exports.resetPassword = (req,res,next)=>{
 
 }
 exports.logout = (req, res) => {
-    console.log(req);
     console.log("logout Fonksiyonu");
-    res.cookie('jwt', 'loggedout', {
-      expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true
-    });
+    res.clearCookie("jwt")
+    // res.cookie('jwt', 'loggedout', {
+    //   expires: new Date(Date.now() + 10 * 1000),
+    //   httpOnly: true
+    // });
     res.status(200).json({ status: 'success' });
   };
 

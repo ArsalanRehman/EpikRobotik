@@ -12,12 +12,15 @@ router.patch('/updateMyPassword', authController.protect, authController.updateP
 router.route('/getAllUsers').get(authController.protect, userController.getUsers);
 router.route('/forgetPassword').post(authController.forgetPassword);
 router.route('/resetPassword').patch(authController.resetPassword);
+router.route('/deleteUser').delete(userController.deleteUser);
+
+
 
 router
   .route('/:id')
   .get(userController.getUser)
   .post(userController.postUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+  .patch(userController.updateUser);
+  // .delete(userController.deleteUser);
 
 module.exports = router;

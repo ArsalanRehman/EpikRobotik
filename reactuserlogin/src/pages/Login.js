@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import './../css/login.css';
-import { Container, Col, Row } from "react-bootstrap";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +14,7 @@ const Login = (props) => {
 
     try {
       const response = await fetch(
-        "http://192.168.109.142:5050/api/v1/users/login",
+        "http://127.0.0.1:5050/api/v1/users/login",
         {
           method: "POST",
           headers: {
@@ -36,9 +35,9 @@ const Login = (props) => {
       // );
       // console.log(JSON.stringify(response?.data))
       const data = await response.json();
-      console.log(data);
+      console.log('Login data.token', data.token);
       if (data.status === "success") {
-        localStorage.setItem("token", data.user);
+        localStorage.setItem("token", data.token);
 
         // alert('Login successful')
         navigate("/dashboard");

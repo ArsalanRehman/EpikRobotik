@@ -10,10 +10,10 @@ import {
   CopyrightText,
 } from "./../components/Styles";
 import User from "./../assets/user.png";
-import { formik, Form, Formik } from "formik";
+import {  Formik } from "formik";
 import { TextInput } from "../components/FormLib";
 import * as Yup from "yup";
-import { FiMail, FiLock } from "react-icons/fi";
+import { FiMail } from "react-icons/fi";
 
 const ForgottenPassword = () => {
   return (

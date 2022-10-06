@@ -1,8 +1,6 @@
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
-import Dashboard from "./pages/Dashboard";
-import cors from "cors";
+// import Dashboard from "./pages/Dashboard";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import {
   BrowserRouter as Router,
@@ -21,10 +19,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/" element={<Login/>}></Route>
+          {/* <Route path="/dashboard" element={<Dashboard />}></Route> */}
+          {/* <Route path="/" element={<Login/>}></Route> */}
           <Route path="/forgottenpassword" element={<ForgottenPassword />}></Route>
-          <Route path="/home" element={<Home />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
