@@ -13,8 +13,6 @@ exports.listenCommand = (req, res) => {
                 arslan.then((result) => {
                     console.log(result);
                 })
-
-               
               /////Subscriber and publisher//////////////
               const sub = nh.subscribe('/arslanTopic', 'std_msgs/String', (msg) => {
                 console.log('Got msg on chatter: %j', msg);
@@ -34,4 +32,31 @@ exports.listenCommand = (req, res) => {
         .catch((err)=>{
             rosnodejs.log.error(err.stack);
         })
+}
+exports.joystick = (req,res) =>{
+    rosnodejs.initNode('/arslanNode')
+
+        .then(() => {
+        const nh = rosnodejs.nh;
+        const pub = nh.advertise('/cmd_vel', 'geometry_msgs/Twist');
+        // while(true){
+        setTimeout(function () {
+            pub.publish({
+                linear: {
+                    x: req.body.x,
+                    y: 0,
+                    z: 0,
+                },
+                angular: {
+                    x: 0,
+                    y: 0,
+                    z: req.body.z,
+                }
+            }
+            );
+        }, 1000);
+    // }
+        // console.log(pub)
+    });
+
 }

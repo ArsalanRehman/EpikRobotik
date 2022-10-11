@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 // import {
-//   StyledSubTitle,
+//   StyledSubname,
 //   StyledButton,
 //   ButtonGroup,
 //   StyledFormArea,
@@ -13,18 +13,38 @@
 
 
 const Dashboard = (props) => {
-//   const navigate = useNavigate()
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const fetchUserData = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('http://127.0.0.1:5050/api/v1/users/getAllUsers');
+      if (!response.success) {
+        throw new Error('Something went wrong!');
+      }
 
-//   // const history = useHistory();
-//   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     if (!token) {
-//       console.log('TOKEN DATA STATUS', token);
-//       localStorage.removeItem('token')
-//       navigate('/login');
-//     }
-//   }, []);
+      const data = await response.json();
 
+      const transformedMovies = data.results.map((userData) => {
+        return {
+          id: userData._id,
+          name: userData.name,
+          role: userData.role,
+          email: userData.email,
+        };
+      });
+      setMovies(transformedMovies);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
+  useEffect(() => {
+    fetchUserData();
+  }, [fetchUserData]);
+  
   return (
 
 

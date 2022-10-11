@@ -1,4 +1,5 @@
 const User = require('./../models/userModels');
+const authController = require('./../controllers/authController')
 
 //get already existed user
 exports.getUsers = async (req, res) => {

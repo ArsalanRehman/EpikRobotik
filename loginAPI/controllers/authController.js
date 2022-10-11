@@ -89,6 +89,17 @@ exports.protect = catchAsync(async(req, res, next) => {
     next();
 });
 
+exports.restrictTo = (...roles) =>{
+    return (req, res, next) =>{
+        // const user = req.user;
+        if(!roles.includes(req.user.role)  ){
+            // console.log(req.params.birim);
+            // console.log(req.user);
+            return next(new AppError('You dont have permission to perform this action ',403));
+        }
+        next();
+    }
+}
 exports.forgetPassword = (req,res,next)=>{
 
 }
@@ -98,10 +109,6 @@ exports.resetPassword = (req,res,next)=>{
 exports.logout = (req, res) => {
     console.log("logout Fonksiyonu");
     res.clearCookie("jwt")
-    // res.cookie('jwt', 'loggedout', {
-    //   expires: new Date(Date.now() + 10 * 1000),
-    //   httpOnly: true
-    // });
     res.status(200).json({ status: 'success' });
   };
 

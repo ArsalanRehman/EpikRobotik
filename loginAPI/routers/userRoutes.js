@@ -4,23 +4,41 @@ const authController = require("./../controllers/authController");
 
 
 const router = express.Router();
-router.post('/signup', authController.signup);
+router.post('/signup',
+  authController.protect,
+  authController.restrictTo('superAdmin'),
+  authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
-router.patch('/updateMyPassword', authController.protect, authController.updatePassword);
+router.patch('/updateMyPassword',
+  authController.protect,
+  authController.updatePassword);
 
-router.route('/getAllUsers').get(authController.protect, userController.getUsers);
+router.route('/getAllUsers').get(
+  authController.protect,
+  authController.restrictTo('admin', 'superAdmin'),
+  userController.getUsers);
 router.route('/forgetPassword').post(authController.forgetPassword);
 router.route('/resetPassword').patch(authController.resetPassword);
-router.route('/deleteUser').delete(userController.deleteUser);
+router.route('/deleteUser').delete(
+  authController.protect,
+  authController.restrictTo('superAdmin'),
+  userController.deleteUser);
 
 
 
 router
   .route('/:id')
-  .get(userController.getUser)
-  .post(userController.postUser)
-  .patch(userController.updateUser);
-  // .delete(userController.deleteUser);
+  .get(
+    authController.protect,
+    userController.getUser)
+  .post(
+    authController.protect,
+    userController.postUser)
+  .patch(
+    authController.protect,
+    authController.restrictTo('superAdmin'),
+    userController.updateUser);
+// .delete(userController.deleteUser);
 
 module.exports = router;
