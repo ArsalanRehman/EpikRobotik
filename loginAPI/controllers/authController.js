@@ -14,8 +14,8 @@ const signToken = id =>{
 
 const createSendToken = (user, statusCode, res) =>{
     const token = signToken(user._id);
-    console.log(user._id);
-    console.log(user.email);
+    // console.log(user._id);
+    // console.log(user.email);
     // console.log(name);
 
     const cookieOptions = {

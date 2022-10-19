@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 const cors = require('cors');
+const rosStart = require('./rosStart');
 
 
 
@@ -12,7 +13,7 @@ app.get(cors());
 const DB = process.env.DATABASE.replace('<PASSWORD>',
   process.env.DATABASE_PASSWORD);
 
-
+// rosStart.rosStart();
 
 mongoose.connect(DB, {
   useNewUrlParser: true,

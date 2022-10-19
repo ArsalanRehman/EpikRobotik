@@ -15,8 +15,8 @@ router.patch('/updateMyPassword',
   authController.updatePassword);
 
 router.route('/getAllUsers').get(
-  authController.protect,
-  authController.restrictTo('admin', 'superAdmin'),
+  // authController.protect,
+  // authController.restrictTo('admin', 'superAdmin'),
   userController.getUsers);
 router.route('/forgetPassword').post(authController.forgetPassword);
 router.route('/resetPassword').patch(authController.resetPassword);
