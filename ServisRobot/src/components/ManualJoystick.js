@@ -53,12 +53,7 @@ const ManualJoystick = (props) => {
   const handleMove = async (e) => {
     console.log(e);
     sendJoystickAPI(e.y, -e.x); // linear x  --- angular z
-  //   if () {
-  //     sendJoystickAPI(e.y, -e.x); // linear x  --- angular z
-  //   }
-  //   else{
 
-  //   }
   };
 
   const handleStop = async (e) => {
