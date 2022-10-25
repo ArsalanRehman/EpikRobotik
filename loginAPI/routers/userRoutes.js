@@ -40,5 +40,5 @@ router
     authController.restrictTo('superAdmin'),
     userController.updateUser)
   .delete(userController.deleteUser);
-
+//delete by id
 module.exports = router;
