@@ -69,7 +69,7 @@ exports.deleteUser = async (req, res) => {
 
   try {
     dpt = null;
-    dpt = await User.findOneAndDelete({ email: req.body.email });
+    dpt = await User.findByIdAndDelete(req.params.id); 
     res.status(204).json({
       status: 'success',
       data: null

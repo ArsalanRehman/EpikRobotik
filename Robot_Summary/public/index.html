@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script>
+      function init() {
+        var stage = new createjs.Stage("demoCanvas");
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("Crimson").drawCircle(0, 0, 50);
+        circle.x = 100;
+        circle.y = 100;
+        stage.addChild(circle);
+        createjs.Tween.get(circle, {loop: true})
+          .to({x: 400}, 1000, createjs.Ease.getPowInOut(4))
+          .to({alpha: 0, y: 75}, 500, createjs.Ease.getPowInOut(2))
+          .to({alpha: 0, y: 125}, 100)
+          .to({alpha: 1, y: 100}, 500, createjs.Ease.getPowInOut(2))
+          .to({x: 100}, 800, createjs.Ease.getPowInOut(2));
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener("tick", stage);
+      }
+    </script> -->
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>SERVICE ROBOT</title>
+  </head>
+  <body>
+    <style>
+
+h1{
+
+margin-top: 10px;
+padding-top: 15px;
+padding-bottom: 15px;
+border-style: solid;
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+
+}
+      h5{
+margin: 15px;
+align-content: left;
+
+      }
+
+      main {
+        text-align: left;
+        width: 1000px;
+        height: 500px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        background: linear-gradient(
+          to left,
+          rgb(202, 228, 210),
+          rgba(61, 88, 63, 0.836)
+        );
+      }
+     
+    </style>
+    <!--onload="init();"-->
+    <!-- <canvas id="demoCanvas" width="500" height="200">
+      </canvas> -->
+
+  
+      <div id="root"></div>
+
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

@@ -1,0 +1,15 @@
+#battery {
+  color: rgb(255, 255, 255);
+  font-size: large;
+  margin-right: 15px;
+  background-image: "h.gif";
+}
+#batteryicon {
+  margin-right: 10px;
+  color: rgb(255, 255, 255);
+  font-size: large;
+}
+
+#epik {
+  margin-left: 10px;
+}

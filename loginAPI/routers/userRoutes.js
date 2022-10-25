@@ -20,10 +20,10 @@ router.route('/getAllUsers').get(
   userController.getUsers);
 router.route('/forgetPassword').post(authController.forgetPassword);
 router.route('/resetPassword').patch(authController.resetPassword);
-router.route('/deleteUser').delete(
-  authController.protect,
-  authController.restrictTo('superAdmin'),
-  userController.deleteUser);
+// router.route('/deleteUser').delete(
+//   authController.protect,
+//   authController.restrictTo('superAdmin'),
+//   userController.deleteUser);
 
 
 
@@ -38,7 +38,7 @@ router
   .patch(
     authController.protect,
     authController.restrictTo('superAdmin'),
-    userController.updateUser);
-// .delete(userController.deleteUser);
+    userController.updateUser)
+  .delete(userController.deleteUser);
 
 module.exports = router;
