@@ -20,6 +20,7 @@ const ManualJoystick = (props) => {
       const response = await fetch(
         "http://127.0.0.1:5050/api/v1/ros/joystick/",
         {
+          delay:8000,
           method: "POST",
           headers: {
             "Content-Type": "application/json",

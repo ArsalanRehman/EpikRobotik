@@ -7,6 +7,7 @@ import DefaultDashboard from "../pages/DefaultDashboard";
 import RobotParameters from "../pages/RobotParameters";
 import { Route } from "react-router-dom";
 import { GiConsoleController } from "react-icons/gi";
+import SystemSetting from "../pages/SystemSetting";
 
 class Home extends Component {
   state = { ros: null };
@@ -47,7 +48,7 @@ class Home extends Component {
     return (
       <div>
         <Header ros={this.state.ros} />
-        <RobotParameters ros={this.state.ros} />
+        <SystemSetting ros={this.state.ros} />
       </div>
     );
   }

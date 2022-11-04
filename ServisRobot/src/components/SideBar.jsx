@@ -9,6 +9,8 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SideBarmenu";
 import "../App.css";
+import { FiSettings } from "react-icons/fi";
+import { GrSystem } from "react-icons/gr";
 
 const routes = [
   {
@@ -44,6 +46,19 @@ const routes = [
         name: "Users ",
         icon: <ImUsers size={25}/>,
       },
+    ],
+  },
+  {
+    path: "/setting",
+    name: "Setting",
+    icon: <FiSettings size={25}/>,
+    subRoutes: [
+      {
+        path: "/setting/SystemSetting",
+        name: "System Setting ",
+        icon: <GrSystem size={25}/>,
+      },
+       
     ],
   },
  
